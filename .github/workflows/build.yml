@@ -17,7 +17,7 @@ jobs:
         run: |
           git clone https://github.com/YuKongA/CVE-2026-98260
           mkdir -p app/src/main/assets
-          cp CVE-2026-98260/timer/timer app/src/main/assets/timer
+          cp CVE-2026-98260/timer/timer app/src/main/assets/timer || true
           chmod +x app/src/main/assets/timer
 
       - name: Set up JDK 17
@@ -25,6 +25,9 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
